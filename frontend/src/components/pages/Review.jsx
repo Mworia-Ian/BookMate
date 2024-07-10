@@ -1,28 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-function Review({ rating, setRating, index }) {
-  return (
-    <div>
-      {[1, 2, 3, 4, 5].map((star) => {
-        return (
-          <span
-            key={star}
-            className="star"
-            style={{
-              cursor: "pointer",
-              color: rating >= star ? "gold" : "grey",
-              fontSize: "35px",
-            }}
-            onClick={() => {
-              setRating(index, star);
-            }}
-          >
-            ★
-          </span>
-        );
-      })}
-    </div>
-  );
-}
+const Review = () => {
+  return 
+    <div className="p-4">Review Page</div>;
+  
+};
 
-export default Review;
+export default Review

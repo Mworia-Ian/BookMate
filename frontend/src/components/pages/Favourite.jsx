@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar";
 import Search from "../Search";
-import Review from "./Review";
+import Review from "./Rating";
 
 function Favourite() {
   const [CardData, setCardData] = useState([
@@ -27,7 +27,7 @@ function Favourite() {
       <Search />
       <div className="grid grid-cols-1 gap-6 p-4 sm:grid-cols-2 lg:grid-cols-3">
         {CardData.map((card, index) => (
-          <div key={index} className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 md:flex-row">
+          <div key={index} className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-red-300 dark:bg-red-300 dark:hover:bg-red-400 md:flex-row">
             <img className="object-cover w-full rounded-t-lg h-48 md:h-48 md:w-48 md:rounded-none md:rounded-l-lg" src="https://images.pexels.com/photos/14104040/pexels-photo-14104040.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Noteworthy technology acquisitions 2021" />
             <div className="flex flex-col justify-between p-4 leading-normal">
               <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">BOOK NAME</h2>

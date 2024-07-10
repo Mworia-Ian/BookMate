@@ -2,7 +2,7 @@ import React from 'react';
 
 function Search() {
   return (
-    <form className="max-w-md mx-auto">
+    <form className="max-w-md mx-auto mt-5">
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
