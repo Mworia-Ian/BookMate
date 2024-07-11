@@ -31,7 +31,7 @@ function Favourite() {
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {CardData.slice(0, 3).map((card, index) => (
-            <div key={index} className="flex flex-col items-start bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-500 dark:border-gray-50 dark:hover:border-gray-200 p-6">
+            <div key={index} className="flex flex-col items-start bg-white border border-gray-300 rounded-lg shadow hover:bg-gray-100 dark:border-gray-500 dark:border-gray-50 dark:hover:border-gray-200 p-6">
               <img className="object-cover w-full rounded-t-lg h-48" src="https://images.pexels.com/photos/14104040/pexels-photo-14104040.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Noteworthy technology acquisitions 2021" />
               <div className="flex flex-col justify-start p-4 leading-normal text-sm md:text-base w-full">
                 <div className="mb-2 text-sm font-medium text-orange-600">Closes in 8hrs 11min</div>
@@ -53,7 +53,7 @@ function Favourite() {
             Books for You
           </div>
           {CardData.slice(3).map((card, index) => (
-            <div key={index + 3} className="flex flex-col items-start bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-500 dark:border-gray-50 dark:hover:border-gray-200 p-6">
+            <div key={index + 3} className="flex flex-col items-start bg-white border border-gray-300 rounded-lg shadow hover:bg-gray-100 dark:border-gray-500 dark:border-gray-50 dark:hover:border-gray-200 p-6">
               <img className="object-cover w-full rounded-t-lg h-48" src="https://images.pexels.com/photos/14104040/pexels-photo-14104040.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Noteworthy technology acquisitions 2021" />
               <div className="flex flex-col justify-start p-4 leading-normal text-sm md:text-base w-full">
                 {/* This condition ensures that "Closes in 8hrs 11min" is not displayed */}

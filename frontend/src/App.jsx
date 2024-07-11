@@ -5,7 +5,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Favourite/>} />
+        <Route path="/favourite" element={<Favourite/>} />
       </Routes>
     </BrowserRouter>
   )
