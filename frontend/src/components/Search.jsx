@@ -62,14 +62,14 @@ function Search() {
             value={query}
             onChange={handleSearchChange}
             onKeyDown={handleKeyDown}
-            className="block w-full p-3 ps-12 text-sm text-gray-900 border border-gray-200 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block w-full p-3 ps-12 text-sm text-gray-900 border border-gray-200 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
             placeholder="Search in BookMate"
             required
           />
         </div>
       </div>
       <div className="flex space-x-1 flex-grow">
-        {["Novels", "Education", "Kids", "Science", "Coding", "History", "Biography", "Romance"].map((label) => (
+        {["Novels", "Education", "Kids", "Science", "Coding", "History", "Biography", "Self-Help"].map((label) => (
           <button
             key={label}
             onClick={() => handleCategoryClick(label)}
