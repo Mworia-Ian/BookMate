@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import Navbar from "../Navbar";
-import Search from "../Search";
-import Review from "./Rating";
+import React, { useState } from 'react';
+import Navbar from '../Navbar';
+import Search from '../Search';
+import Review from './Rating';
 
 function Favourite() {
   const [CardData, setCardData] = useState([
