@@ -15,7 +15,7 @@ function BookCard({ book, bidding = false }) {
             <span key={i} className={`text-xl ${i < book.rating ? 'text-yellow-400' : 'text-gray-300'}`}>★</span>
           ))}
         </div>
-        <p className="font-bold mt-2">Rs.{book.price.toFixed(2)}</p>
+        <p className="font-bold mt-2">£{book.price.toFixed(2)}</p>
         <button className="mt-2 w-full bg-be5a36 text-white py-2 rounded-lg hover:bg-be5a36-dark">
           {bidding ? 'Place Bid' : 'Buy Now'}
         </button>
