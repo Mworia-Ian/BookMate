@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+
 const ContactUsPage = () => {
   const [question, setQuestion] = useState('');
   const [isSent, setIsSent] = useState(false);
@@ -11,7 +12,7 @@ const ContactUsPage = () => {
   };
 
   return (
-    <div className="bg-white px-6 py-24 sm:py-32 lg:px-8">
+    <div className="bg-orange-100 px-6 py-24 sm:py-32 lg:px-8">
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Contact Us</h2>
         <p className="mt-2 text-lg leading-8 text-gray-600">
@@ -22,8 +23,8 @@ const ContactUsPage = () => {
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-12">
         {/* Customer Support Section */}
-        <div className="bg-orange-100 rounded-lg p-6">
-          <h2 className="text-xl font-semibold mb-4">Customer Support</h2>
+        <div className="bg-white rounded-lg p-6 shadow-md">
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">Customer Support</h2>
           <ul className="text-gray-700">
             <li>
               <strong>Email:</strong>{' '}
@@ -41,8 +42,8 @@ const ContactUsPage = () => {
         </div>
 
         {/* Technical Support Section */}
-        <div className="bg-orange-100 rounded-lg p-6">
-          <h2 className="text-xl font-semibold mb-4">Technical Support</h2>
+        <div className="bg-white rounded-lg p-6 shadow-md">
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">Technical Support</h2>
           <ul className="text-gray-700">
             <li>
               <strong>Email:</strong>{' '}
@@ -57,8 +58,8 @@ const ContactUsPage = () => {
         </div>
 
         {/* Media Inquiries Section */}
-        <div className="bg-orange-100 rounded-lg p-6">
-          <h2 className="text-xl font-semibold mb-4">Media Inquiries</h2>
+        <div className="bg-white rounded-lg p-6 shadow-md">
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">Media Inquiries</h2>
           <ul className="text-gray-700">
             <li>
               <strong>Email:</strong>{' '}
@@ -70,8 +71,8 @@ const ContactUsPage = () => {
         </div>
 
         {/* Feedback and Suggestions Section */}
-        <div className="bg-orange-100 rounded-lg p-6 col-span-2 lg:col-span-1">
-          <h2 className="text-xl font-semibold mb-4">Feedback and Suggestions</h2>
+        <div className="bg-white rounded-lg p-6 col-span-2 lg:col-span-1 shadow-md">
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">Feedback and Suggestions</h2>
           <ul className="text-gray-700">
             <li>
               <strong>Email:</strong>{' '}
@@ -83,8 +84,8 @@ const ContactUsPage = () => {
         </div>
 
         {/* Office Address Section */}
-        <div className="bg-orange-100 rounded-lg p-6 col-span-2">
-          <h2 className="text-xl font-semibold mb-4">Office Address</h2>
+        <div className="bg-white rounded-lg p-6 col-span-2 shadow-md">
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">Office Address</h2>
           <ul className="text-gray-700">
             <li>
               <strong>Address:</strong> 123 Bookworm Street, Cityville, Country
@@ -93,8 +94,8 @@ const ContactUsPage = () => {
         </div>
 
         {/* Social Media Section */}
-        <div className="bg-orange-100 rounded-lg p-6 col-span-2">
-          <h2 className="text-xl font-semibold mb-4">Social Media</h2>
+        <div className="bg-white rounded-lg p-6 col-span-2 shadow-md">
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">Social Media</h2>
           <ul className="text-gray-700">
             <li>
               <strong>Facebook:</strong>{' '}
@@ -118,8 +119,8 @@ const ContactUsPage = () => {
         </div>
 
         {/* Business Hours Section */}
-        <div className="bg-orange-100 rounded-lg p-6 col-span-2">
-          <h2 className="text-xl font-semibold mb-4">Business Hours</h2>
+        <div className="bg-white rounded-lg p-6 col-span-2 shadow-md">
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">Business Hours</h2>
           <p className="text-gray-700">
             Our support team is available during the following hours:
           </p>
@@ -131,8 +132,8 @@ const ContactUsPage = () => {
         </div>
 
         {/* Emergency Contact Section */}
-        <div className="bg-orange-100 rounded-lg p-6 col-span-2">
-          <h2 className="text-xl font-semibold mb-4">Emergency Contact</h2>
+        <div className="bg-white rounded-lg p-6 col-span-2 shadow-md">
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">Emergency Contact</h2>
           <p className="text-gray-700">
             For urgent matters outside business hours, please call:
           </p>
@@ -145,7 +146,7 @@ const ContactUsPage = () => {
       </div>
 
       <div className="mx-auto max-w-2xl text-center mt-12">
-        <h2 className="text-xl font-semibold mb-4">How Can We Help You Today?</h2>
+        <h2 className="text-xl font-semibold mb-4 text-gray-900">How Can We Help You Today?</h2>
         <p className="text-gray-600">
           Whether you have a question about our services, need technical assistance, or want to share your thoughts,
           we're here to assist you. Reach out to us via email, phone, or live chat, and we'll get back to you as soon
