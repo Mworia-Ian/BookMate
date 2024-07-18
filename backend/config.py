@@ -16,3 +16,4 @@ app.config["JWT_SECRET_KEY"] = "your-secret-key"  # Change this to a secure secr
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 jwt = JWTManager(app)
+
