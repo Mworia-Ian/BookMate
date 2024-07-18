@@ -42,7 +42,7 @@ function Favourite() {
                   setRating={handleRatingChange}
                   index={index}
                 />
-                <h4 className="mb-3 font-bold text-gray-800 dark:text-gray-800">Rs.500.00</h4>
+                <h4 className="mb-3 font-bold text-gray-800 dark:text-gray-800">£.500.00</h4>
                 <button className="mt-4 px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600">
                   Place Bid
                 </button>

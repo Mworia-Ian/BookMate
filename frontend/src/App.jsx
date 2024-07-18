@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Favourite from "./components/pages/Favourite"
 import ContactUsPage from "./components/pages/Contact"
+import Home from "./components/pages/Home"
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Routes>
         <Route path="/favourite" element={<Favourite/>} />
         <Route path="/contact" element={<ContactUsPage/>} />
+        <Route path="/home" element={<Home/>} />
       </Routes>
     </BrowserRouter>
   )
