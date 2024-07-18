@@ -3,66 +3,100 @@ import { useNavigate, Link } from "react-router-dom";
 import COVER_SIGN from "../assets/COVER_SIGN.jpg";
 
 function Signup() {
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     // Split full name into first and last name
-    const [firstName, ...lastNameParts] = fullName.split(' ');
-    const lastName = lastNameParts.join(' ');
+    const [firstName, ...lastNameParts] = fullName.split(" ");
+    const lastName = lastNameParts.join(" ");
 
     try {
-      const response = await fetch('http://localhost:5000/signup', {
-        method: 'POST',
+      const response = await fetch("http://localhost:5000/signup", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ first_name: firstName, last_name: lastName, email, password }),
+        body: JSON.stringify({
+          first_name: firstName,
+          last_name: lastName,
+          email,
+          password,
+        }),
       });
 
       if (!response.ok) {
-        throw new Error('Signup failed');
+        throw new Error("Signup failed");
       }
 
-      navigate('/');  // Redirect to login page after successful signup
+      navigate("/");
     } catch (err) {
-      setError('Signup failed. Please try again.');
+      setError("Signup failed. Please try again.");
     }
   };
 
   return (
-    <div className="w-full h-screen flex items">
-      {/* ... (keep the existing JSX) ... */}
+    <div className="w-full h-screen flex">
+      <div
+        className="w-1/2 bg-cover bg-center"
+        style={{ backgroundImage: `url(${COVER_SIGN})` }}
+      >
+      </div>
       <div className="w-1/2 flex items-center justify-center bg-gray-200">
         <div className="bg-white p-8 rounded-lg shadow-2xl w-3/4 min-h-[50vh]">
           <div className="text-center mb-6">
-            <h1 className="text-3xl font-bold text-gray-800">SIGN UP</h1>
+            <h1 className="text-3xl font-bold text-gray-800">REGISTER</h1>
           </div>
           {error && <p className="text-red-500 text-center mb-4">{error}</p>}
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">
-                Full Name
+              <label
+                htmlFor="firstName"
+                className="block text-sm font-medium text-gray-700"
+              >
+                First Name
               </label>
               <div className="mt-1">
                 <input
                   type="text"
-                  id="fullName"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
+                  id="firstName"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-orange-500"
                   required
                 />
               </div>
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="lastName"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Last Name
+              </label>
+              <div className="mt-1">
+                <input
+                  type="text"
+                  id="lastName"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-orange-500"
+                  required
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Email
               </label>
               <div className="mt-1">
@@ -77,7 +111,10 @@ function Signup() {
               </div>
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Password
               </label>
               <div className="mt-1 relative">
@@ -93,7 +130,10 @@ function Signup() {
             </div>
             <div className="text-left">
               <span>Already have an account?</span>
-              <Link to="/" className="text-sm text-orange-600 hover:underline font-bold">
+              <Link
+                to="/"
+                className="ml-2 text-sm text-orange-600 hover:underline font-bold"
+              >
                 Log in here
               </Link>
             </div>
@@ -102,7 +142,7 @@ function Signup() {
                 type="submit"
                 className="w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 transition duration-200"
               >
-                SIGN UP
+                REGISTER
               </button>
             </div>
           </form>
@@ -111,5 +151,4 @@ function Signup() {
     </div>
   );
 }
-
 export default Signup;
