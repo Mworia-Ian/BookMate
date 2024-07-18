@@ -30,7 +30,7 @@ function Signup() {
         throw new Error('Signup failed');
       }
 
-      navigate('/');  // Redirect to login page after successful signup
+      navigate('/'); 
     } catch (err) {
       setError('Signup failed. Please try again.');
     }
