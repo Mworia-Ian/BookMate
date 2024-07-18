@@ -4,39 +4,43 @@ import COVER_IMAGE from "../assets/COVER_IMAGE.jpg";
 import { Link } from "react-router-dom";
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     try {
-      const response = await fetch('http://localhost:5000/login', {
-        method: 'POST',
+      const response = await fetch("http://localhost:5000/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
       });
 
       if (!response.ok) {
-        throw new Error('Login failed');
+        throw new Error("Login failed");
       }
 
       const data = await response.json();
-      localStorage.setItem('token', data.access_token);
-      navigate('/home');
+      localStorage.setItem("token", data.access_token);
+      navigate("/home");
     } catch (err) {
-      setError('Invalid email or password');
+      setError("Invalid email or password");
     }
   };
 
   return (
-    <div className="w-full h-screen flex items">
-      {/* ... (keep the existing JSX) ... */}
+    <div className="w-full h-screen flex">
+      <div
+        className="w-1/2 bg-cover bg-center"
+        style={{ backgroundImage: `url(${COVER_IMAGE})` }}
+      >
+      </div>
       <div className="w-1/2 flex items-center justify-center bg-gray-200">
         <div className="bg-white p-8 rounded-lg shadow-2xl w-3/4 min-h-[50vh]">
           <div className="text-center mb-6">
@@ -45,7 +49,10 @@ function Login() {
           {error && <p className="text-red-500 text-center mb-4">{error}</p>}
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Email
               </label>
               <div className="mt-1">
@@ -60,7 +67,10 @@ function Login() {
               </div>
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Password
               </label>
               <div className="mt-1 relative">
@@ -76,7 +86,10 @@ function Login() {
             </div>
             <div className="text-left">
               <span>Don't have an account?</span>
-              <Link to="/signup" className="ml-2 text-sm text-orange-600 hover:underline font-bold">
+              <Link
+                to="/signup"
+                className="ml-2 text-sm text-orange-600 hover:underline font-bold"
+              >
                 Register here
               </Link>
             </div>
@@ -94,5 +107,6 @@ function Login() {
     </div>
   );
 }
+
 
 export default Login;
