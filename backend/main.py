@@ -1,4 +1,4 @@
-from flask import request, jsonify
+from flask import request
 from flask_restful import Resource, Api
 from config import app, db
 from models import Book
@@ -9,7 +9,7 @@ class BookListResource(Resource):
     def get(self):
         books = Book.query.all()
         json_books = list(map(lambda x: x.to_json(), books))
-        return jsonify({"books": json_books})
+        return {"books": json_books}
     
     def post(self):
         title = request.json.get("title")
@@ -18,23 +18,23 @@ class BookListResource(Resource):
         published_date = request.json.get("publishedDate")
 
         if not title or not author or not genre or not published_date:
-            return jsonify({"message": "You must include a title, author, genre and published date"}), 400
+            return {"message": "You must include a title, author, genre and published date"}, 400
         
         new_book = Book(title=title, author=author, genre=genre, published_date=published_date)
         try:
             db.session.add(new_book)
             db.session.commit()
         except Exception as e:
-            return jsonify({"message": str(e)}), 400
+            return {"message": str(e)}, 400
         
-        return jsonify({"message": "Book added successfully!"}), 201
+        return {"message": "Book added successfully!"}, 201
 
 class BookResource(Resource):
     def patch(self, book_id):
         book = Book.query.get(book_id)
 
         if not book:
-            return jsonify({"message": "Book not found"}), 404
+            return {"message": "Book not found"}, 404
         
         data = request.json
         book.title = data.get("title", book.title)
@@ -44,18 +44,18 @@ class BookResource(Resource):
 
         db.session.commit()
 
-        return jsonify({"message": "Book updated"}), 200
+        return {"message": "Book updated"}, 200
     
     def delete(self, book_id):
         book = Book.query.get(book_id)
 
         if not book:
-            return jsonify({"message": "Book not found"}), 404
+            return {"message": "Book not found"}, 404
         
         db.session.delete(book)
         db.session.commit()
 
-        return jsonify({"message": "Book deleted!"})
+        return {"message": "Book deleted!"}
 
 api.add_resource(BookListResource, '/books')
 api.add_resource(BookResource, '/books/<int:book_id>')
