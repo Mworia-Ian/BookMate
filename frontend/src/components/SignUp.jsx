@@ -36,7 +36,6 @@ function Signup() {
         throw new Error("Signup failed");
       }
 
-      navigate("/");
     } catch (err) {
       setError("Signup failed. Please try again.");
     }
