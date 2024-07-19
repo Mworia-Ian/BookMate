@@ -19,11 +19,12 @@ class BookListResource(Resource):
         author = request.json.get("author")
         genre = request.json.get("genre")
         published_date = request.json.get("publishedDate")
+        cover_image = request.json.get("coverImage")
 
         if not title or not author or not genre or not published_date:
             return {"message": "You must include a title, author, genre and published date"}, 400
         
-        new_book = Book(title=title, author=author, genre=genre, published_date=published_date)
+        new_book = Book(title=title, author=author, genre=genre, published_date=published_date, cover_image=cover_image)
         try:
             db.session.add(new_book)
             db.session.commit()
@@ -45,6 +46,7 @@ class BookResource(Resource):
         book.author = data.get("author", book.author)
         book.genre = data.get("genre", book.genre)
         book.published_date = data.get("publishedDate", book.published_date)
+        book.cover_image = data.get("coverImage", book.cover_image)
 
         db.session.commit()
 

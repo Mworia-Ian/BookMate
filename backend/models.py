@@ -8,6 +8,7 @@ class Book(db.Model):
     author = db.Column(db.String(80), nullable=False)
     genre = db.Column(db.String(120), nullable=False)
     published_date = db.Column(db.String(80), nullable=False)
+    cover_image = db.Column(db.String(255))
 
     def to_json(self):
         return {
@@ -15,7 +16,8 @@ class Book(db.Model):
             "title": self.title,
             "author": self.author,
             "genre": self.genre,
-            "publishedDate": self.published_date
+            "publishedDate": self.published_date,
+            "coverImage": self.cover_image
         }
 
 class User(db.Model, UserMixin):
