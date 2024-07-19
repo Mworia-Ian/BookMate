@@ -10,36 +10,43 @@ function Signup() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError("");
 
-    // Split full name into first and last name
-    const [firstName, ...lastNameParts] = fullName.split(" ");
-    const lastName = lastNameParts.join(" ");
+  try {
+    const response = await fetch("http://localhost:5000/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        password,
+      }),
+    });
 
-    try {
-      const response = await fetch("http://localhost:5000/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          first_name: firstName,
-          last_name: lastName,
-          email,
-          password,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Signup failed");
-      }
-
-    } catch (err) {
-      setError("Signup failed. Please try again.");
+    if (!response.ok) {
+      throw new Error("Signup failed");
     }
-  };
+
+    const data = await response.json();
+    
+    if (data.success) {
+      
+      alert("User created successfully!");
+
+      navigate("/home");
+    } else {
+      setError(data.message || "Signup failed. Please try again.");
+    }
+
+  } catch (err) {
+    setError("Signup failed. Please try again.");
+  }
+};
 
   return (
     <div className="w-full h-screen flex">
