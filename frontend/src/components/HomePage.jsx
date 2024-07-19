@@ -3,12 +3,13 @@ import axios from 'axios';
 
 function HomePage() {
   const [books, setBooks] = useState([]);
+  const [editingBook, setEditingBook] = useState(null);
   const [newBook, setNewBook] = useState({
     title: '',
     author: '',
     genre: '',
     publishedDate: '',
-    coverImageUrl: '',
+    coverImage: '',
   });
 
   useEffect(() => {
@@ -26,8 +27,13 @@ function HomePage() {
     }
   };
 
-  const handleInputChange = (e) => {
-    setNewBook({ ...newBook, [e.target.name]: e.target.value });
+  const handleInputChange = (e, isEditForm = false) => {
+    const { name, value } = e.target;
+    if (isEditForm) {
+      setEditingBook({ ...editingBook, [name]: value });
+    } else {
+      setNewBook({ ...newBook, [name]: value });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -41,11 +47,37 @@ function HomePage() {
         author: '',
         genre: '',
         publishedDate: '',
-        coverImageUrl: '',
+        coverImage: '',
       });
       fetchBooks();
     } catch (error) {
       console.error('Error adding book:', error);
+    }
+  };
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.patch(`http://localhost:5000/books/${editingBook.id}`, editingBook, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      });
+      setEditingBook(null);
+      fetchBooks();
+    } catch (error) {
+      console.error('Error updating book:', error);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    if (window.confirm('Are you sure you want to delete this book?')) {
+      try {
+        await axios.delete(`http://localhost:5000/books/${id}`, {
+          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        });
+        fetchBooks();
+      } catch (error) {
+        console.error('Error deleting book:', error);
+      }
     }
   };
 
@@ -94,8 +126,8 @@ function HomePage() {
           />
           <input
             type="url"
-            name="coverImageUrl"
-            value={newBook.coverImageUrl}
+            name="coverImage"
+            value={newBook.coverImage}
             onChange={handleInputChange}
             placeholder="Cover Image URL"
             className="p-2 border rounded col-span-2"
@@ -110,15 +142,77 @@ function HomePage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {books.map((book) => (
           <div key={book.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
-            {book.coverImageUrl && (
-              <img src={book.coverImageUrl} alt={book.title} className="w-full h-48 object-cover"/>
+            {editingBook && editingBook.id === book.id ? (
+              <form onSubmit={handleUpdate} className="p-4">
+                <input
+                  type="text"
+                  name="title"
+                  value={editingBook.title}
+                  onChange={(e) => handleInputChange(e, true)}
+                  className="w-full p-2 border rounded mb-2"
+                  required
+                />
+                <input
+                  type="text"
+                  name="author"
+                  value={editingBook.author}
+                  onChange={(e) => handleInputChange(e, true)}
+                  className="w-full p-2 border rounded mb-2"
+                  required
+                />
+                <input
+                  type="text"
+                  name="genre"
+                  value={editingBook.genre}
+                  onChange={(e) => handleInputChange(e, true)}
+                  className="w-full p-2 border rounded mb-2"
+                  required
+                />
+                <input
+                  type="date"
+                  name="publishedDate"
+                  value={editingBook.publishedDate}
+                  onChange={(e) => handleInputChange(e, true)}
+                  className="w-full p-2 border rounded mb-2"
+                  required
+                />
+                <input
+                  type="url"
+                  name="coverImage"
+                  value={editingBook.coverImage}
+                  onChange={(e) => handleInputChange(e, true)}
+                  className="w-full p-2 border rounded mb-2"
+                />
+                <div className="flex justify-end space-x-2">
+                  <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                    Save
+                  </button>
+                  <button type="button" onClick={() => setEditingBook(null)} className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            ) : (
+              <>
+                {book.coverImage && (
+                  <img src={book.coverImage} alt={book.title} className="w-full h-48 object-cover"/>
+                )}
+                <div className="p-4">
+                  <h3 className="font-bold text-xl mb-2">{book.title}</h3>
+                  <p className="text-gray-700 text-base mb-2">Author: {book.author}</p>
+                  <p className="text-gray-700 text-base mb-2">Genre: {book.genre}</p>
+                  <p className="text-gray-700 text-base mb-2">Published: {book.publishedDate}</p>
+                  <div className="flex justify-end space-x-2">
+                    <button onClick={() => setEditingBook(book)} className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
+                      Edit
+                    </button>
+                    <button onClick={() => handleDelete(book.id)} className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </>
             )}
-            <div className="p-4">
-              <h3 className="font-bold text-xl mb-2">{book.title}</h3>
-              <p className="text-gray-700 text-base mb-2">Author: {book.author}</p>
-              <p className="text-gray-700 text-base mb-2">Genre: {book.genre}</p>
-              <p className="text-gray-700 text-base">Published: {book.publishedDate}</p>
-            </div>
           </div>
         ))}
       </div>
