@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 * {
-    font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .bg-be5a36 {
   background-color: #be5a36;

@@ -6,8 +6,8 @@ import HomePage from "./pages/HomePage";
 import BookDetailPage from "./pages/BookDetailPage";
 import FavoritesPage from "./pages/FavoritesPage";
 import Login from "./components/Login";
-import Signup from "./components/Signup";
-import FavoritesContext from "./contexts/FavoritesContext"; 
+import Signup from "./components/SignUp";
+import FavoritesContext from "./contexts/FavoritesContext";
 
 function App() {
   const [favorites, setFavorites] = useState([]);
