@@ -7,6 +7,11 @@ import FavoritesPage from "./pages/FavoritesPage";
 import Footer from "./components/Footer";
 import FavoritesContext from "./contexts/FavoritesContext";
 
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from './components/Login';
+import Signup from './components/SignUp';
+import HomePage from './components/HomePage';
+
 function App() {
   const [favorites, setFavorites] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
@@ -28,6 +33,14 @@ function App() {
       </FavoritesContext.Provider>
     </Router>
   ); 
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/home" element={<HomePage />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
