@@ -1,24 +1,23 @@
 import React from 'react';
 
-function BookCard({ book, bidding = false }) {
+function BookCard({ book, onClick }) {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      <img src={book.image} alt={book.title} className="w-full h-48 object-cover" />
+    <div
+      className="bg-white shadow-lg rounded-lg overflow-hidden cursor-pointer"
+      onClick={onClick}
+    >
+      {book.coverImage && (
+        <img
+          src={book.coverImage}
+          alt={book.title}
+          className="w-full h-48 object-cover"
+        />
+      )}
       <div className="p-4">
-        {bidding && (
-          <p className="text-red-500 text-sm mb-2">Closes: {book.closingTime}</p>
-        )}
-        <h3 className="font-bold text-lg">{book.title}</h3>
-        <p className="text-gray-600">{book.author}</p>
-        <div className="flex items-center mt-2">
-          {[...Array(5)].map((_, i) => (
-            <span key={i} className={`text-xl ${i < book.rating ? 'text-yellow-400' : 'text-gray-300'}`}>★</span>
-          ))}
-        </div>
-        <p className="font-bold mt-2">£{book.price.toFixed(2)}</p>
-        <button className="mt-2 w-full bg-be5a36 text-white py-2 rounded-lg hover:bg-be5a36-dark">
-          {bidding ? 'Place Bid' : 'Buy Now'}
-        </button>
+        <h3 className="font-bold text-xl mb-2">{book.title}</h3>
+        <p className="text-gray-700 text-base mb-2">Author: {book.author}</p>
+        <p className="text-gray-700 text-base mb-2">Genre: {book.genre}</p>
+        <p className="text-gray-700 text-base mb-2">Published: {book.publishedDate}</p>
       </div>
     </div>
   );

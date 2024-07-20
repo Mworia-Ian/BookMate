@@ -1,66 +1,83 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import FavoritesContext from '../contexts/FavoritesContext';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useParams, useNavigate } from 'react-router-dom';
 
 function BookDetailPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { favorites, setFavorites } = useContext(FavoritesContext);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    setLoading(true);
-    fetch(`/api/books/${id}`)
-      .then(response => response.json())
-      .then(data => {
-        setBook(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching book details:', error);
-        setLoading(false);
-      });
+    fetchBook();
   }, [id]);
 
-  const handleAddToFavorites = () => {
-    if (!favorites.some(fav => fav.id === book.id)) {
-      setFavorites([...favorites, book]);
+  const fetchBook = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await axios.get(`http://localhost:5000/books/${id}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      });
+      setBook(response.data);
+    } catch (error) {
+      setError('Error fetching book details. Please try again later.');
+      console.error('Error fetching book:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
+  const handleEdit = () => {
+    navigate(`/edit/${id}`);
+  };
+
+  const handleDelete = () => {
+    navigate(`/delete/${id}`);
+  };
+
   if (loading) {
-    return <div className="text-center">Loading...</div>;
+    return <div className="text-center mt-8">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="text-center mt-8 text-red-500">{error}</div>;
   }
 
   if (!book) {
-    return <div className="text-center">Book not found</div>;
+    return <div className="text-center mt-8">Book not found.</div>;
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-      <div className="flex flex-col md:flex-row">
-        <div className="md:w-1/3">
-          <img src={book.image} alt={book.title} className="w-full h-auto rounded-lg" />
-        </div>
-        <div className="md:w-2/3 md:pl-6 mt-4 md:mt-0">
-          <h1 className="text-3xl font-bold dark:text-white">{book.title}</h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300">{book.author}</p>
-          <div className="flex items-center mt-2">
-            {[...Array(5)].map((_, i) => (
-              <span key={i} className={`h-6 w-6 ${i < book.rating ? 'text-yellow-400' : 'text-gray-300'}`}>★</span>
-            ))}
-            <span className="ml-2 text-gray-600 dark:text-gray-300">({book.rating} out of 5)</span>
-          </div>
-          <p className="text-2xl font-bold mt-4 dark:text-white">Rs.{book.price.toFixed(2)}</p>
-          <button 
-            onClick={handleAddToFavorites}
-            className="mt-4 bg-booknet-orange text-white py-2 px-6 rounded-lg hover:bg-booknet-orange-dark transition-colors duration-200"
-          >
-            Add to Favorites
-          </button>
-          <div className="mt-6">
-            <h2 className="text-xl font-bold mb-2 dark:text-white">Description</h2>
-            <p className="text-gray-700 dark:text-gray-300">{book.description}</p>
+    <div className="container mx-auto p-4">
+      <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+        {book.coverImage && (
+          <img
+            src={book.coverImage}
+            alt={book.title}
+            className="w-full h-64 object-cover"
+          />
+        )}
+        <div className="p-4">
+          <h3 className="font-bold text-xl mb-2">{book.title}</h3>
+          <p className="text-gray-700 text-base mb-2">Author: {book.author}</p>
+          <p className="text-gray-700 text-base mb-2">Genre: {book.genre}</p>
+          <p className="text-gray-700 text-base mb-2">Published: {book.publishedDate}</p>
+          <p className="text-gray-700 text-base mt-4">{book.description}</p>
+          <div className="mt-4">
+            <button
+              onClick={handleEdit}
+              className="bg-blue-500 text-white px-4 py-2 rounded mr-2 hover:bg-blue-600 transition-colors duration-200"
+            >
+              Edit
+            </button>
+            <button
+              onClick={handleDelete}
+              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors duration-200"
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>
