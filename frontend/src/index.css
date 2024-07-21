@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+.bg-be5a36 {
+  background-color: #be5a36;
+}
+
+.bg-be5a36-dark {
+  background-color: #9b4a28;
+}
+
+.text-be5a36 {
+  color: #be5a36;
+}
+
+.text-be5a36-dark {
+  color: #9b4a28;
+}
+
+.focus:ring-be5a36 {
+  --ring-opacity: 1;
+  box-shadow: 0 0 0 3px rgba(190, 90, 54, var(--ring-opacity));
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
