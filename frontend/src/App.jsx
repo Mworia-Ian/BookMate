@@ -1,14 +1,21 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import ContactUsPage from "./components/pages/contact"
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from './components/Login';
+import Signup from './components/SignUp';
+import HomePage from './components/HomePage';
+import ContactUsPage from './components/pages/Contact';
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
-        <Route path="/contact" element={<ContactUsPage/>} />
+        <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/contact" element={<ContactUsPage />} />
+
       </Routes>
-    </BrowserRouter>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;
