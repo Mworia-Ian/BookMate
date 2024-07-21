@@ -1,7 +1,6 @@
 import React, { createContext, useState, useContext } from "react";
 import Navbar from "../components/Navbar";
 
-
 const FavoritesContext = createContext();
 
 export const FavoritesProvider = ({ children }) => {
