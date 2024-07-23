@@ -2,35 +2,51 @@ Bookmate is a simple web application for book enthusiasts. Users can sign in, re
 
 ## Features
 Authentication: Users can log in or register for an account.
+
 Home Page: Displays a paginated list of books with a search feature and load more functionality.
+
 Add Page: Allows users to add new books to the collection.
+
 Detail Page: Shows detailed information about a selected book, with options to edit or delete the book.
+
 Favorites Page: Displays a list of user-selected favorite books with the ability to remove books from favorites.
-Technologies Used
+
+## Technologies Used
 Frontend: Vite, React, React Router DOM
+
 Backend: Node.js, Express.js with PostgreSQL database
+
 Authentication: JSON Web Tokens (JWT)
+
 Styling: Tailwind CSS
+
 ## Getting Started
 Follow these instructions to get the project up and running on your local machine.
 
 ## Prerequisites
 Node.js and npm installed on your machine
+
 PostgreSQL installed and running locally or a remote instance
+
 Access to the backend server (not provided in this README)
+
 ## Installation
 Clone the repository:
 
-bash
 Copy code
 git clone https://github.com/your/repository.git
+
 cd repository-name
+
 Install dependencies:
 
-bash
+
 Copy code
+
 npm install
+
 Create a .env file in the root directory and add the following environment variables:
+
 
 plaintext
 Copy code
