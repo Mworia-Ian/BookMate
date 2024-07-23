@@ -1,65 +1,133 @@
-import React, { useState } from "react";
+import React from "react";
 
 const ContactUsPage = () => {
-  const [question, setQuestion] = useState('');
-  const [isSent, setIsSent] = useState(false);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Simulate sending question to backend (not implemented here)
-    setIsSent(true);
-  };
-
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <div className="text-center">
         <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Contact Us</h2>
         <p className="mt-2 text-lg leading-8 text-gray-600">
-          Welcome to BookMate! We're here to assist you with any questions or issues you may have.
+          Welcome to BookMate! Here is our contact information for assistance.
         </p>
       </div>
 
-      {/* Contact Form */}
-      <form onSubmit={handleSubmit} className="mx-auto mt-12 max-w-xl">
-        <div className="grid grid-cols-1 gap-y-6">
-          <div>
-            <label htmlFor="question" className="block text-sm font-semibold leading-6 text-gray-900">
-              Your Question
-            </label>
-            <div className="mt-2.5">
-              <textarea
-                id="question"
-                name="question"
-                rows={4}
-                value={question}
-                onChange={(e) => setQuestion(e.target.value)}
-                className="block w-full rounded-md border-gray-300 px-3.5 py-2 text-gray-900 shadow-sm focus:ring-2 focus:ring-orange-600 focus:border-transparent sm:text-sm sm:leading-6"
-                placeholder="Enter your question..."
-                required
-              />
-            </div>
-          </div>
-
-          <div className="mt-10">
-            <button
-              type="submit"
-              className="block w-full rounded-md bg-orange-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus-visible:ring-offset-2 focus-visible:ring-orange-600"
-            >
-              Send Question
-            </button>
-          </div>
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-12">
+        {/* Customer Support Section */}
+        <div className="bg-white rounded-lg p-6 shadow-md">
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">Customer Support</h2>
+          <ul className="text-gray-700">
+            <li>
+              <strong>Email:</strong>{" "}
+              <a href="mailto:support@bookmate.com" className="text-indigo-600 hover:underline">
+                support@bookmate.com
+              </a>
+            </li>
+            <li>
+              <strong>Phone:</strong> +1 234 567 8900
+            </li>
+          </ul>
         </div>
-      </form>
 
-      {/* Confirmation Message */}
-      {isSent && (
-        <div className="mx-auto mt-8 max-w-xl text-center">
-          <p className="text-lg text-gray-900">Your question has been sent!</p>
+        {/* Technical Support Section */}
+        <div className="bg-white rounded-lg p-6 shadow-md">
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">Technical Support</h2>
+          <ul className="text-gray-700">
+            <li>
+              <strong>Email:</strong>{" "}
+              <a href="mailto:techsupport@bookmate.com" className="text-indigo-600 hover:underline">
+                techsupport@bookmate.com
+              </a>
+            </li>
+          </ul>
         </div>
-      )}
+
+        {/* Media Inquiries Section */}
+        <div className="bg-white rounded-lg p-6 shadow-md">
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">Media Inquiries</h2>
+          <ul className="text-gray-700">
+            <li>
+              <strong>Email:</strong>{" "}
+              <a href="mailto:media@bookmate.com" className="text-indigo-600 hover:underline">
+                media@bookmate.com
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Office Address Section */}
+        <div className="bg-white rounded-lg p-6 col-span-2 lg:col-span-1 shadow-md">
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">Office Address</h2>
+          <ul className="text-gray-700">
+            <li>
+              <strong>Address:</strong> 123 Bookworm Street, Cityville, Country
+            </li>
+          </ul>
+        </div>
+
+        {/* Social Media Section */}
+        <div className="bg-white rounded-lg p-6 col-span-2 shadow-md">
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">Social Media</h2>
+          <ul className="text-gray-700">
+            <li>
+              <strong>Facebook:</strong>{" "}
+              <a href="https://facebook.com/bookmate" className="text-indigo-600 hover:underline">
+                BookMate Official
+              </a>
+            </li>
+            <li>
+              <strong>Twitter:</strong>{" "}
+              <a href="https://twitter.com/bookmate" className="text-indigo-600 hover:underline">
+                BookMate Official
+              </a>
+            </li>
+            <li>
+              <strong>Instagram:</strong>{" "}
+              <a href="https://instagram.com/bookmate" className="text-indigo-600 hover:underline">
+                BookMate Official
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Business Hours Section */}
+        <div className="bg-white rounded-lg p-6 col-span-2 shadow-md">
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">Business Hours</h2>
+          <p className="text-gray-700">
+            Our support team is available during the following hours:
+          </p>
+          <ul className="text-gray-700">
+            <li>
+              <strong>Monday - Friday:</strong> 9:00 AM - 6:00 PM (local time)
+            </li>
+          </ul>
+        </div>
+
+        {/* Emergency Contact Section */}
+        <div className="bg-white rounded-lg p-6 col-span-2 shadow-md">
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">Emergency Contact</h2>
+          <p className="text-gray-700">
+            For urgent matters outside business hours, please call:
+          </p>
+          <ul className="text-gray-700">
+            <li>
+              <strong>Emergency Contact:</strong> +1 234 567 8901
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="text-center mt-12">
+        <a
+          href="mailto:support@bookmate.com"
+          className="inline-block px-6 py-3 rounded-md bg-orange-500 text-white font-semibold text-sm shadow-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+        >
+          Contact Us
+        </a>
+      </div>
     </div>
   );
 };
 
 export default ContactUsPage;
+
+
 
