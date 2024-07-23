@@ -52,8 +52,7 @@ Home Page: Browse through the list of books, search for specific books, and load
 Add Page: Add new books by filling out the form and submitting.
 Detail Page: Click on a book to view detailed information, edit the book details, or delete the book.
 Favorites Page: View and manage your favorite books.
-Contributing
+
+## Contributing
 Contributions are welcome! Fork the repository and submit a pull request.
 
-## License
-This project is licensed under the MIT License - see the LICENSE file for details
