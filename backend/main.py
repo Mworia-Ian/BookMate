@@ -99,11 +99,19 @@ class UserLogin(Resource):
             return {"access_token": access_token}, 200
         else:
             return {"message": "Invalid email or password"}, 401
+        
+class Contact(Resource):
+    def post(self):
+        first_name = request.json.get("first_name")
+        last_name = request.json.get("last_name")
+        email = request.json.get("email")
+
 
 api.add_resource(BookListResource, '/books')
 api.add_resource(BookResource, '/books/<int:book_id>')
 api.add_resource(UserSignup, '/signup')
 api.add_resource(UserLogin, '/login')
+api.add_resource(Contact, '/contact')
 
 if __name__ == "__main__":
     app.run(debug=True)
