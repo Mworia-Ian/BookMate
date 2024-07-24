@@ -2,7 +2,7 @@ from flask import request, jsonify
 from flask_restful import Resource, Api
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from config import app, db
-from models import Book, User
+from models import Book, User, Contact as ContactModel
 
 api = Api(app)
 
@@ -100,7 +100,7 @@ class UserLogin(Resource):
         else:
             return {"message": "Invalid email or password"}, 401
         
-class Contact(Resource):
+class ContactResource(Resource):
     def post(self):
         data = request.get_json()
         first_name = data.get("first_name")
@@ -111,20 +111,21 @@ class Contact(Resource):
         if not first_name or not last_name or not email or not solution:
             return {"message": "All fields are required"}, 400
 
-        new_contact = Contact(first_name=first_name, last_name=last_name, email=email, solution=solution)
+        new_contact = ContactModel(first_name=first_name, last_name=last_name, email=email, solution=solution)
         try:
             db.session.add(new_contact)
             db.session.commit()
         except Exception as e:
+            db.session.rollback()
             return {"message": str(e)}, 400
 
         return {"message": "Contact query submitted successfully"}, 201
 
+api.add_resource(ContactResource, '/contact')
 api.add_resource(BookListResource, '/books')
 api.add_resource(BookResource, '/books/<int:book_id>')
 api.add_resource(UserSignup, '/signup')
 api.add_resource(UserLogin, '/login')
-api.add_resource(Contact, '/contact')
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -21,7 +21,7 @@ function Contact() {
     setSuccess("");
 
     try {
-      const response = await axios.post('/contact', {
+      const response = await axios.post('http://localhost:5000/contact', {
         first_name: firstName,
         last_name: lastName,
         email: email,
