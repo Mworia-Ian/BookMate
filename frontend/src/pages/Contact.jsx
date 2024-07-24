@@ -2,11 +2,11 @@ import React, { useState } from "react";
 
 import Contact_us from "../assets/Contact_us.jpg";
 
-
 function Contact() {
   // State variables for form inputs
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [solution, setSolution] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 
@@ -14,19 +14,18 @@ function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Form submission logic here
-    if (!firstName || !lastName || !email) {
+    if (!firstName || !lastName || !email || !solution) {
       setError("All fields are required.");
       return;
     }
     setError("");
     // Add logic to handle form submission
-    console.log({ firstName, lastName, email });
+    console.log({ firstName, lastName, email, solution });
+    alert("Form submitted successfully!");
   };
 
-  
   return (
     <div>
-
       <div className="w-full h-screen flex">
         <div
           className="w-1/2 bg-cover bg-center"
@@ -70,6 +69,24 @@ function Contact() {
                     id="lastName"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-orange-500"
+                    required
+                  />
+                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="solution"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  What can we do for you?
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="text"
+                    id="solution"
+                    value={solution}
+                    onChange={(e) => setSolution(e.target.value)}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-orange-500"
                     required
                   />
