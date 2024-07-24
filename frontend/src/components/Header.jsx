@@ -19,15 +19,24 @@ function Header({ isLoggedIn, onLogout }) {
               B<span className="text-be5a36">OO</span>KMATE 📚
             </Link>
             <nav className="hidden md:flex items-center space-x-6">
-              <Link to="/" className="text-gray-600 hover:text-gray-800 transition-colors duration-200">
-                Home
+              <Link
+                to="/contact"
+                className="text-gray-600 hover:text-gray-800 transition-colors duration-200"
+              >
+                Contact
               </Link>
               {isLoggedIn && (
                 <>
-                  <Link to="/favorites" className="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+                  <Link
+                    to="/favorites"
+                    className="text-gray-600 hover:text-gray-800 transition-colors duration-200"
+                  >
                     Favorites
                   </Link>
-                  <Link to="/add" className="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+                  <Link
+                    to="/add"
+                    className="text-gray-600 hover:text-gray-800 transition-colors duration-200"
+                  >
                     Add Book
                   </Link>
                 </>
@@ -57,10 +66,7 @@ function Header({ isLoggedIn, onLogout }) {
                 >
                   Login
                 </Link>
-                <Link
-                  to="/register"
-                  className="text-black"
-                >
+                <Link to="/register" className="text-black">
                   Register
                 </Link>
               </div>
