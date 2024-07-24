@@ -102,10 +102,23 @@ class UserLogin(Resource):
         
 class Contact(Resource):
     def post(self):
-        first_name = request.json.get("first_name")
-        last_name = request.json.get("last_name")
-        email = request.json.get("email")
+        data = request.get_json()
+        first_name = data.get("first_name")
+        last_name = data.get("last_name")
+        email = data.get("email")
+        solution = data.get("solution")
 
+        if not first_name or not last_name or not email or not solution:
+            return {"message": "All fields are required"}, 400
+
+        new_contact = Contact(first_name=first_name, last_name=last_name, email=email, solution=solution)
+        try:
+            db.session.add(new_contact)
+            db.session.commit()
+        except Exception as e:
+            return {"message": str(e)}, 400
+
+        return {"message": "Contact query submitted successfully"}, 201
 
 api.add_resource(BookListResource, '/books')
 api.add_resource(BookResource, '/books/<int:book_id>')
