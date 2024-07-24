@@ -48,10 +48,13 @@ class Contact(db.Model):
     first_name = db.Column(db.String(80), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
     email = db.Column(db.String(120), nullable=False)
+    solution = db.Column(db.Text, nullable=False)
+
     def to_json(self):
         return {
             "id": self.id,
             "first_name": self.first_name,
             "last_name": self.last_name,
-            "email": self.email
+            "email": self.email,
+            "solution": self.solution
         }
