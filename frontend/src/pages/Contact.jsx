@@ -79,7 +79,7 @@ function Contact() {
                   htmlFor="solution"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  What can we do for you?
+                  How can we help you?🤝😊
                 </label>
                 <div className="mt-1">
                   <input
