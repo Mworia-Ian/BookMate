@@ -13,6 +13,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import FavoritesContext from './contexts/FavoritesContext';
 import LimitedAccessWrapper from './components/LimitedAccessWrapper';
+import Contact from './pages/Contact';
 
 const isAuthenticated = () => !!localStorage.getItem('token');
 
@@ -78,6 +79,7 @@ const App = () => {
                 <HomePage />
               </LimitedAccessWrapper>
             } />
+            <Route path='/contact' element= {<Contact/>}/>
             <Route path="/books/:id" element={
               <LimitedAccessWrapper isLoggedIn={isLoggedIn}>
                 <BookDetailPage />

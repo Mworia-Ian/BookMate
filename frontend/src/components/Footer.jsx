@@ -13,8 +13,21 @@ function Footer() {
           <div className="w-full md:w-1/3 mb-6 md:mb-0">
             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
             <ul>
-              <li><Link to="/home" className="hover:text-gray-200">Home</Link></li>
-              <li><Link to="/favorites" className="hover:text-gray-200">Favorites</Link></li>
+              <li>
+                <Link to="/home" className="hover:text-gray-200">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/favorites" className="hover:text-gray-200">
+                  Favorites
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-gray-200">
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
           <div className="w-full md:w-1/3">
