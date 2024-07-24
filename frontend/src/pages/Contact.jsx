@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Navbar from "../components/Navbar";
+
 import Contact_us from "../assets/Contact_us.jpg";
+
 
 function Contact() {
   // State variables for form inputs
@@ -22,9 +23,10 @@ function Contact() {
     console.log({ firstName, lastName, email });
   };
 
+  
   return (
     <div>
-      <Navbar />
+
       <div className="w-full h-screen flex">
         <div
           className="w-1/2 bg-cover bg-center"
