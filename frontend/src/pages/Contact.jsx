@@ -1,27 +1,41 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 import Contact_us from "../assets/Contact_us.jpg";
 
 function Contact() {
-  // State variables for form inputs
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [solution, setSolution] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
-  // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Form submission logic here
     if (!firstName || !lastName || !email || !solution) {
       setError("All fields are required.");
       return;
     }
     setError("");
-    // Add logic to handle form submission
-    console.log({ firstName, lastName, email, solution });
-    alert("Form submitted successfully!");
+    setSuccess("");
+
+    try {
+      const response = await axios.post('/contact', {
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        solution: solution
+      });
+      
+      setSuccess("Form submitted successfully!");
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setSolution("");
+    } catch (error) {
+      setError(error.response?.data?.message || "An error occurred. Please try again.");
+    }
   };
 
   return (
@@ -37,6 +51,7 @@ function Contact() {
               <h1 className="text-3xl font-bold text-gray-800">Contact Us</h1>
             </div>
             {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+            {success && <p className="text-green-500 text-center mb-4">{success}</p>}
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
