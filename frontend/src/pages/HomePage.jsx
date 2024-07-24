@@ -48,7 +48,9 @@ function HomePage() {
   };
 
   const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
+    const searchTerm = e.target.value;
+    console.log('New search term:', searchTerm);
+    setSearchTerm(searchTerm);
     setPage(1);
   };
 
@@ -73,6 +75,9 @@ function HomePage() {
         >
           Load More
         </button>
+      )}
+      {!loading && !hasMore && (
+        <p className="text-center mt-4">End of books.</p>
       )}
     </div>
   );

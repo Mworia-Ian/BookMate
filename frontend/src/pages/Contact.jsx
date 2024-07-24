@@ -91,24 +91,6 @@ function Contact() {
               </div>
               <div>
                 <label
-                  htmlFor="solution"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  How can we help you?🤝😊
-                </label>
-                <div className="mt-1">
-                  <input
-                    type="text"
-                    id="solution"
-                    value={solution}
-                    onChange={(e) => setSolution(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-orange-500"
-                    required
-                  />
-                </div>
-              </div>
-              <div>
-                <label
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700"
                 >
@@ -125,6 +107,25 @@ function Contact() {
                   />
                 </div>
               </div>
+              <div>
+                <label
+                  htmlFor="solution"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  How can we help you?🤝😊
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="text"
+                    id="solution"
+                    value={solution}
+                    onChange={(e) => setSolution(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-orange-500"
+                    required
+                  />
+                </div>
+              </div>
+              
               <div>
                 <button
                   type="submit"
